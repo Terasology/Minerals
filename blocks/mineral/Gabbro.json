@@ -14,10 +14,5 @@
  * limitations under the License.
  */
 
-/**
- * Gabbro is one of the types of stone that forms entire layers.
- */
 {
-    "hardness" : 16,
-    "mass" : 128
 }
