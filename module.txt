@@ -1,7 +1,9 @@
 {
     "id" : "Minerals",
     "version" : "0.1.0",
-    "displayName" : "Metouto's Mineral Pack",
     "author" : "Metouto",
-    "description" : "This module adds a wide range of minerals."
+    "displayName" : "Metouto's Mineral Pack",
+    "description" : "This module adds a wide range of minerals.",
+    "dependencies" : [],
+    "isServerSideOnly" : false
 }
