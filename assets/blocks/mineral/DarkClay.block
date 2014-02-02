@@ -15,8 +15,8 @@
  */
 
 /**
- * Tin is used to coat other metals to prevent corrosion; die casting;
- *
+ * Clay that contains iron and other minerals
  */
 {
+    "mass" : 128
 }
