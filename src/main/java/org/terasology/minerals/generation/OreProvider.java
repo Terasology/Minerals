@@ -22,77 +22,77 @@ public abstract class OreProvider implements FacetProviderPlugin {
     //These values are placed here at the beginning so that they can be adjusted easily:
     //Change these values to adjust rarities: Higher value = more rare, 1 = ore never generates
     final protected float[] RARITY = {
-            0.8f,   //Acanthite
+            0.9f,   //Acanthite
             0.8f,   //Bauxite
-            0.8f,   //BituminousCoal
-            0.8f,   //Cassiterite
-            0.8f,   //Chalcopyrite
-            0.8f,   //Chlorargyrite
-            0.8f,   //Chrysocolla
-            0.8f,   //Coal
+            0.7f,   //BituminousCoal
+            0.6f,   //Cassiterite
+            0.5f,   //Chalcopyrite
+            0.4f,   //Chlorargyrite
+            0.3f,   //Chrysocolla
+            0.2f,   //CoalOre
             0.8f,   //Goethite
-            0.8f,   //Hematite
+            0.9f,   //Hematite
             0.8f,   //Limonite
-            0.8f,   //Magnetite
-            0.8f,   //NativeCopper
-            0.8f,   //NativeElectrum
-            0.8f,   //NativeGold
-            0.8f,   //NativeSilver
-            0.8f,   //Pyrargyrite
-            0.8f,   //Rutile
+            0.7f,   //Magnetite
+            0.6f,   //NativeCopper
+            0.5f,   //NativeElectrum
+            0.4f,   //NativeGold
+            0.3f,   //NativeSilver
+            0.2f,   //Pyrargyrite
+            0.9f,   //Rutile
             0.8f,   //Siderite
-            0.8f,   //Stibnite
-            0.8f    //Titanite
+            0.7f,   //Stibnite
+            0.6f,    //Titanite
     };
     
     //Maximum y value the ore should generate at
-    final protected int[] MAX_HEIGHT = {
-            -5,   //Acanthite
-            -5,   //Bauxite
-            -5,   //BituminousCoal
-            -5,   //Cassiterite
-            -5,   //Chalcopyrite
-            -5,   //Chlorargyrite
-            -5,   //Chrysocolla
-            -5,   //Coal
-            -5,   //Goethite
-            -5,   //Hematite
-            -5,   //Limonite
-            -5,   //Magnetite
-            -5,   //NativeCopper
-            -5,   //NativeElectrum
-            -5,   //NativeGold
-            -5,   //NativeSilver
-            -5,   //Pyrargyrite
-            -5,   //Rutile
-            -5,   //Siderite
-            -5,   //Stibnite
-            -5    //Titanite
+    final protected int[] MAX_HEIGHT = new int[]{
+            -305,   //Acanthite
+            -65,    //Bauxite
+            -165,   //BituminousCoal
+            -105,   //Cassiterite
+            -85,    //Chalcopyrite
+            -225,   //Chlorargyrite
+            -165,   //Chrysocolla
+            -5,     //CoalOre
+            -25,    //Goethite
+            -145,   //Hematite
+            -185,   //Limonite
+            -325,   //Magnetite
+            -205,   //NativeCopper
+            -345,   //NativeElectrum
+            -45,    //NativeGold
+            -125,   //NativeSilver
+            -265,   //Pyrargyrite
+            -365,   //Rutile
+            -345,   //Siderite
+            -285,   //Stibnite
+            -385    //Titanite
     };
     
     //Maximum size of each ore vein
     final protected int[] MAX_SIZE = {
-            5,   //Acanthite
-            5,   //Bauxite
-            5,   //BituminousCoal
-            5,   //Cassiterite
+            3,   //Acanthite
+            2,   //Bauxite
+            1,   //BituminousCoal
+            4,   //Cassiterite
             5,   //Chalcopyrite
-            5,   //Chlorargyrite
-            5,   //Chrysocolla
-            5,   //Coal
-            5,   //Goethite
+            3,   //Chlorargyrite
+            2,   //Chrysocolla
+            1,   //CoalOre
+            4,   //Goethite
             5,   //Hematite
-            5,   //Limonite
-            5,   //Magnetite
-            5,   //NativeCopper
-            5,   //NativeElectrum
+            3,   //Limonite
+            2,   //Magnetite
+            1,   //NativeCopper
+            4,   //NativeElectrum
             5,   //NativeGold
-            5,   //NativeSilver
-            5,   //Pyrargyrite
-            5,   //Rutile
-            5,   //Siderite
+            3,   //NativeSilver
+            2,   //Pyrargyrite
+            1,   //Rutile
+            4,   //Siderite
             5,   //Stibnite
-            5    //Titanite
+            3    //Titanite
     };
 
     @Override
