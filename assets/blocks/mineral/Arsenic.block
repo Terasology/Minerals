@@ -30,5 +30,5 @@
  *  Gives off a garlic odor, especially when struck or heated.
  */
 {
-    "mass" = 128
+    "mass": 128
 }
