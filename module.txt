@@ -1,9 +1,11 @@
 {
     "id" : "Minerals",
-    "version" : "0.1.2-SNAPSHOT",
-    "author" : "Metouto,Esa-Petri",
+    "version" : "0.1.3-SNAPSHOT",
+    "author" : "Metouto,Esa-Petri,Qwertygiy",
     "displayName" : "Metouto's Mineral Pack",
     "description" : "This module adds a wide range of minerals.",
-    "dependencies" : [],
+    "dependencies" : [
+            {"id" : "CoreAssets", "minVersion" : "1.0.0"}
+    ],
     "isServerSideOnly" : false
 }
