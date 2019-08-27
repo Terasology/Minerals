@@ -1,0 +1,12 @@
+/**
+ * Serpentinite is a green stone.  Serpentinite can find use in industry for a number of purposes, such as
+ * railway ballasts and building materials. Asbestos content can be released into the air when
+ * serpentinite is excavated and if it is used as a road surface, forming a long term health hazard for
+ * breathing in asbestos dust.
+ */
+{
+    "basedOn":"CoreAssets:rock2",
+    "categories":["rock", "rock2", "metamorphic"],
+    "mass":256,
+    "hardness":128
+}

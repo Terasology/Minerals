@@ -1,22 +1,12 @@
-/*
- * Copyright 2012 Benjamin Glatzel <benjamin.glatzel@me.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 /**
- * Cobaltite is a mineral that contains up to 10 percent iron and variable amounts of nickel.
+ * Cobaltite is a mineral composed mainly of cobalt, arsenic, and sulfur, that may contain
+ * up to 10 percent iron, and variable amounts of nickel. The name comes from the German word
+ * "Kobold", for "underground spirit", as it is notoriously difficult to smelt cobalt out of its ores
+ * in traditional manners.
  */
 {
-    "mass" : 128
+    "basedOn":"CoreAssets:rock3",
+    "categories":["rock", "rock2", "rock3", "metamorphic", "oreCobalt"],
+    "mass":633,
+    "hardness":1000
 }

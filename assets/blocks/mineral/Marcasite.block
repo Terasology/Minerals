@@ -1,21 +1,14 @@
-/*
- * Copyright 2012 Benjamin Glatzel <benjamin.glatzel@me.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 /**
- * Marcasite occurs in sedimentary rocks (shales, limestones and low grade coals). Marcasite a source of sulfur.
+ * Marcasite occurs in sedimentary rocks (shales, limestones and low grade coals).
+ * It is iron sulfide, the same chemical as pyrite, but forms into a weaker
+ * crystal shape than pyrite. Jewelry known as marcasite is actually made from pyrite,
+ * and is not made out of this brittle mineral. Care must be taken with true marcasite; if it
+ * is exposed to humid conditions, it will decay into iron sulfate (or green vitriol) and
+ * the highly corrosive sulfuric acid.
  */
 {
+    "basedOn":"CoreAssets:rock2",
+    "categories":["rock", "rock2", "iron sulfide"],
+    "mass":488,
+    "hardness":800
 }

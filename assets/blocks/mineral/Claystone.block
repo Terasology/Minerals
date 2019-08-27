@@ -1,0 +1,12 @@
+/**
+ * Claystone is a geological term used to describe a clastic sedimentary rock
+ * that is composed primarily of clay-sized particles. Claystones are distinct
+ * from mudstones, which are partly hardened muds that slake when wetted;
+ * claystone is fully hardened material.
+ */
+{
+    "basedOn":"CoreAssets:rock",
+    "categories":["rock", "mudrock", "sedimentary"],
+    "mass":128,
+    "hardness":10
+}

@@ -1,21 +1,11 @@
-/*
- * Copyright 2012 Benjamin Glatzel <benjamin.glatzel@me.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 /**
- * Realgar is poisonous.
+ * Realgar is a fairly soft, red gem consisting of arsenic sulfide, a poisonous chemical
+ * that is also known to cause cancer. It decays into a yellow powder upon prolonged exposure
+ * to sunlight.
  */
 {
+    "basedOn":"CoreAssets:rock",
+    "categories":["rock", "gem", "gemRed"],
+    "mass":356,
+    "hardness":60
 }

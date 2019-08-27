@@ -1,0 +1,11 @@
+/**
+ * Sulfur is used in gun powder, matches; is used as fungicide and insecticide
+ * in agriculture and as a disinfectant in medicines; used in ointments for
+ * curing skin diseases
+ */
+{
+    "basedOn":"CoreAssets:rock2",
+    "categories":["rock", "rock2", "oreSulfur"],
+    "mass":200,
+    "hardness":120
+}
