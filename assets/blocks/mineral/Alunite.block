@@ -5,7 +5,7 @@
  */
 {
     "basedOn" : "CoreAssets:rock2",
-    "categories" : ["rock", "rock2", ""sulfate"],
+    "categories" : ["rock", "rock2", "sulfate"],
     "hardness" : 160,
     "mass" : 280
 }

@@ -3,7 +3,7 @@
  */
 {
     "basedOn" : "CoreAssets:rock",
-    "categories" : ["rock", "gypsum", "sulfate"]
+    "categories" : ["rock", "gypsum", "sulfate"],
     "hardness" : 32,
     "mass" : 230
 }
