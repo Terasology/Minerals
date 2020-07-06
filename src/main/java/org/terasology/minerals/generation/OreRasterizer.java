@@ -81,46 +81,46 @@ public class OreRasterizer implements WorldRasterizerPlugin {
             
             switch(veinSize) {
                 case(1):
-                    chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 break;
                 
                 case(2): {
-                    chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
                 
                 case(3): {
-                    chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, 0, -1).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
                 
                 case(4): {
-                    chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, 0, -1).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, 1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
                 
                 case(5): {
-                    chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, 0, -1).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(0, 1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                     if(position.add(1, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
-                        chunk.setBlock(ChunkMath.calcBlockPos(position), ore);
+                        chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
                 
