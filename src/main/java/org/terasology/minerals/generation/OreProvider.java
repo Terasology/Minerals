@@ -1,24 +1,21 @@
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.minerals.generation;
 
+import org.terasology.engine.utilities.procedural.Noise;
+import org.terasology.engine.utilities.procedural.SimplexNoise;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.Facet;
+import org.terasology.engine.world.generation.FacetProviderPlugin;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Requires;
+import org.terasology.engine.world.generation.facets.SurfaceHeightFacet;
 import org.terasology.math.geom.Vector3i;
-import org.terasology.utilities.procedural.Noise;
-import org.terasology.utilities.procedural.SimplexNoise;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.Facet;
-import org.terasology.world.generation.FacetProviderPlugin;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Requires;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
 
 @Requires(@Facet(SurfaceHeightFacet.class))
 public abstract class OreProvider implements FacetProviderPlugin {
-    
-    protected Noise oreNoise;
-    
-    //Index of each ore in arrays and used for noise generation to avoid all of them overlapping
-    protected int index;
-    
+
     //These values are placed here at the beginning so that they can be adjusted easily:
     //Change these values to adjust rarities: Higher value = more rare, 1 = ore never generates
     final protected float[] RARITY = {
@@ -44,7 +41,6 @@ public abstract class OreProvider implements FacetProviderPlugin {
             0.7f,   //Stibnite
             0.6f,    //Titanite
     };
-    
     //Maximum y value the ore should generate at
     final protected int[] MAX_HEIGHT = new int[]{
             -305,   //Acanthite
@@ -69,7 +65,6 @@ public abstract class OreProvider implements FacetProviderPlugin {
             -285,   //Stibnite
             -385    //Titanite
     };
-    
     //Maximum size of each ore vein
     final protected int[] MAX_SIZE = {
             3,   //Acanthite
@@ -94,33 +89,36 @@ public abstract class OreProvider implements FacetProviderPlugin {
             5,   //Stibnite
             3    //Titanite
     };
+    protected Noise oreNoise;
+    //Index of each ore in arrays and used for noise generation to avoid all of them overlapping
+    protected int index;
 
     @Override
     public void setSeed(long seed) {
         oreNoise = new SimplexNoise(seed + index);
     }
-    
+
     protected OreFacet baseProcess(GeneratingRegion region, Border3D border, int index) {
 
         OreFacet facet = new OreFacet(region.getRegion(), border);
         SurfaceHeightFacet surfaceHeightFacet = region.getRegionFacet(SurfaceHeightFacet.class);
-        
+
         for (Vector3i block : region.getRegion())
-            if(block.y < MAX_HEIGHT[index] && block.y < surfaceHeightFacet.getWorld(block.x, block.z)-5) {
+            if (block.y < MAX_HEIGHT[index] && block.y < surfaceHeightFacet.getWorld(block.x, block.z) - 5) {
                 float noiseLevel = oreNoise.noise(block.x, block.y, block.z);
-                if(noiseLevel <= RARITY[index])
+                if (noiseLevel <= RARITY[index])
                     facet.setWorld(block, 0);
                 else {
-                    float subNoiseLevel = (1-noiseLevel) / (1-RARITY[index]);
+                    float subNoiseLevel = (1 - noiseLevel) / (1 - RARITY[index]);
                     float interval = subNoiseLevel / MAX_SIZE[index];
-                    for(int i=MAX_SIZE[index]; i>0; i--)
-                        if(subNoiseLevel > interval*(i-1)) {
+                    for (int i = MAX_SIZE[index]; i > 0; i--)
+                        if (subNoiseLevel > interval * (i - 1)) {
                             facet.setWorld(block, i);
                             break;
                         }
                 }
             }
-        
+
         return facet;
     }
 }

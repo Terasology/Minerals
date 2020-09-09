@@ -1,27 +1,30 @@
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.minerals.generation;
 
-import org.terasology.math.ChunkMath;
+import org.terasology.engine.math.ChunkMath;
+import org.terasology.engine.registry.CoreRegistry;
+import org.terasology.engine.world.block.Block;
+import org.terasology.engine.world.block.BlockManager;
+import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.generation.Facet;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.Requires;
+import org.terasology.engine.world.generation.WorldRasterizerPlugin;
+import org.terasology.engine.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.engine.world.generator.plugin.RegisterPlugin;
 import org.terasology.math.geom.Vector3i;
-import org.terasology.registry.CoreRegistry;
-import org.terasology.world.block.Block;
-import org.terasology.world.block.BlockManager;
-import org.terasology.world.chunks.CoreChunk;
-import org.terasology.world.generation.Facet;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.Requires;
-import org.terasology.world.generation.WorldRasterizerPlugin;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
-import org.terasology.world.generator.plugin.RegisterPlugin;
 
 @RegisterPlugin
 @Requires(@Facet(SurfaceHeightFacet.class))
 public class OreRasterizer implements WorldRasterizerPlugin {
-    
-    protected Block acanthite, bauxite, bituminousCoal, cassiterite, chalcopyrite, chlorargyrite, chrysocolla, coal, goethite,
+
+    protected Block acanthite, bauxite, bituminousCoal, cassiterite, chalcopyrite, chlorargyrite, chrysocolla, coal,
+            goethite,
             hematite, limonite, magnetite, nativeCopper, nativeElectrum, nativeGold, nativeSilver, pyrargyrite, rutile,
             siderite, stibnite, titanite;
-    
+
     @Override
     public void initialize() {
         acanthite = CoreRegistry.get(BlockManager.class).getBlock("Minerals:AcanthiteOre");
@@ -49,7 +52,7 @@ public class OreRasterizer implements WorldRasterizerPlugin {
 
     @Override
     public void generateChunk(CoreChunk chunk, Region chunkRegion) {
-        generateChunk(chunk, chunkRegion, acanthite, chunkRegion.getFacet( OreFacet.Acanthite.class));
+        generateChunk(chunk, chunkRegion, acanthite, chunkRegion.getFacet(OreFacet.Acanthite.class));
         generateChunk(chunk, chunkRegion, bauxite, chunkRegion.getFacet(OreFacet.Bauxite.class));
         generateChunk(chunk, chunkRegion, bituminousCoal, chunkRegion.getFacet(OreFacet.BituminousCoal.class));
         generateChunk(chunk, chunkRegion, cassiterite, chunkRegion.getFacet(OreFacet.Cassiterite.class));
@@ -71,60 +74,61 @@ public class OreRasterizer implements WorldRasterizerPlugin {
         generateChunk(chunk, chunkRegion, stibnite, chunkRegion.getFacet(OreFacet.Stibnite.class));
         generateChunk(chunk, chunkRegion, titanite, chunkRegion.getFacet(OreFacet.Titanite.class));
     }
-    
+
     protected void generateChunk(CoreChunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
         SurfaceHeightFacet surfaceHeightFacet = chunkRegion.getFacet(SurfaceHeightFacet.class);
-        
-        for(Vector3i position : chunkRegion.getRegion()) {
+
+        for (Vector3i position : chunkRegion.getRegion()) {
             float surfaceHeight = surfaceHeightFacet.getWorld(position.x, position.z);
-            int veinSize = (int)oreFacet.getWorld(position);
-            
-            switch(veinSize) {
-                case(1):
+            int veinSize = (int) oreFacet.getWorld(position);
+
+            switch (veinSize) {
+                case (1):
                     chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                break;
-                
-                case(2): {
+                    break;
+
+                case (2): {
                     chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, -1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
-                
-                case(3): {
+
+                case (3): {
                     chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, -1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, 0, -1).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, 0, -1).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
-                
-                case(4): {
+
+                case (4): {
                     chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, -1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, 0, -1).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, 0, -1).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, 1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, 1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
-                
-                case(5): {
+
+                case (5): {
                     chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, -1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, 0, -1).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, 0, -1).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(0, 1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(0, 1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    if(position.add(1, -1, 0).y<surfaceHeight-5 && chunkRegion.getRegion().encompasses(position))
+                    if (position.add(1, -1, 0).y < surfaceHeight - 5 && chunkRegion.getRegion().encompasses(position))
                         chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
                 }
                 break;
-                
-                default: break;
+
+                default:
+                    break;
             }
         }
     }
