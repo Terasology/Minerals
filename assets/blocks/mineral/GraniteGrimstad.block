@@ -3,6 +3,6 @@
  * It is a reddish pink in color, with dark speckles.
  */
 {
-    "basedOn": "Minerals:Granite",
+    "basedOn": "GenericRocks:Granite",
     "displayName": "Grimstad Granite"
 }
