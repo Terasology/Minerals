@@ -5,13 +5,10 @@ import org.terasology.math.geom.Vector3i;
 import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.SimplexNoise;
 import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetProviderPlugin;
 import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Requires;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.world.generation.facets.ElevationFacet;
 
-@Requires(@Facet(SurfaceHeightFacet.class))
 public abstract class OreProvider implements FacetProviderPlugin {
     
     protected Noise oreNoise;
@@ -103,10 +100,10 @@ public abstract class OreProvider implements FacetProviderPlugin {
     protected OreFacet baseProcess(GeneratingRegion region, Border3D border, int index) {
 
         OreFacet facet = new OreFacet(region.getRegion(), border);
-        SurfaceHeightFacet surfaceHeightFacet = region.getRegionFacet(SurfaceHeightFacet.class);
+        ElevationFacet elevationFacet = region.getRegionFacet(ElevationFacet.class);
         
         for (Vector3i block : region.getRegion())
-            if(block.y < MAX_HEIGHT[index] && block.y < surfaceHeightFacet.getWorld(block.x, block.z)-5) {
+            if(block.y < MAX_HEIGHT[index] && block.y < elevationFacet.getWorld(block.x, block.z)-5) {
                 float noiseLevel = oreNoise.noise(block.x, block.y, block.z);
                 if(noiseLevel <= RARITY[index])
                     facet.setWorld(block, 0);
