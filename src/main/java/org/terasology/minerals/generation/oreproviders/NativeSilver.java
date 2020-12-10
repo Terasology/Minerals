@@ -5,11 +5,15 @@ import org.terasology.minerals.generation.OreFacet;
 import org.terasology.minerals.generation.OreProvider;
 import org.terasology.utilities.procedural.SimplexNoise;
 import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
+import org.terasology.world.generation.facets.ElevationFacet;
 import org.terasology.world.generator.plugin.RegisterPlugin;
 
 @RegisterPlugin
+@Requires(@Facet(ElevationFacet.class))
 @Produces(OreFacet.NativeSilver.class)
 public class NativeSilver extends OreProvider {
     protected int index = 15;
