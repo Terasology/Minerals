@@ -1,11 +1,13 @@
 
 package org.terasology.minerals.generation;
 
+import org.joml.Vector3ic;
 import org.terasology.math.ChunkMath;
-import org.terasology.math.geom.Vector3i;
+import org.joml.Vector3i;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
+import org.terasology.world.block.BlockRegions;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizerPlugin;
@@ -69,51 +71,51 @@ public class OreRasterizer implements WorldRasterizerPlugin {
     }
     
     protected void generateChunk(CoreChunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
-        for(Vector3i position : chunkRegion.getRegion()) {
+        for(Vector3i position : BlockRegions.iterable(chunkRegion.getRegion())) {
             int veinSize = (int)oreFacet.getWorld(position);
             
             switch(veinSize) {
                 case(1):
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                 break;
                 
                 case(2): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                 }
                 break;
                 
                 case(3): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, 0, -1);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                 }
                 break;
                 
                 case(4): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, 0, -1);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, 1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                 }
                 break;
                 
                 case(5): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, 0, -1);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(0, 1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                     position.add(1, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, new Vector3i()), ore);
                 }
                 break;
                 
