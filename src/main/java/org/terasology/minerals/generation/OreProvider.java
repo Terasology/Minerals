@@ -1,11 +1,9 @@
 
 package org.terasology.minerals.generation;
 
-import org.joml.Vector3i;
 import org.joml.Vector3ic;
 import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.SimplexNoise;
-import org.terasology.world.block.BlockRegions;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.FacetProviderPlugin;
 import org.terasology.world.generation.GeneratingRegion;
@@ -104,7 +102,7 @@ public abstract class OreProvider implements FacetProviderPlugin {
         OreFacet facet = new OreFacet(region.getRegion(), border);
         ElevationFacet elevationFacet = region.getRegionFacet(ElevationFacet.class);
         
-        for (Vector3ic block : BlockRegions.iterable(region.getRegion()))
+        for (Vector3ic block : region.getRegion())
             if(block.y() < MAX_HEIGHT[index] && block.y() < elevationFacet.getWorld(block.x(), block.z())-5) {
                 float noiseLevel = oreNoise.noise(block.x(), block.y(), block.z());
                 if(noiseLevel <= RARITY[index])

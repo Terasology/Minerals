@@ -1,13 +1,12 @@
 
 package org.terasology.minerals.generation;
 
+import org.joml.Vector3i;
 import org.joml.Vector3ic;
 import org.terasology.math.ChunkMath;
-import org.joml.Vector3i;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
-import org.terasology.world.block.BlockRegions;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizerPlugin;
@@ -71,7 +70,8 @@ public class OreRasterizer implements WorldRasterizerPlugin {
     }
     
     protected void generateChunk(CoreChunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
-        for(Vector3i position : BlockRegions.iterable(chunkRegion.getRegion())) {
+        for(Vector3ic pos : chunkRegion.getRegion()) {
+            Vector3i position = new Vector3i(pos);
             int veinSize = (int)oreFacet.getWorld(position);
             
             switch(veinSize) {
