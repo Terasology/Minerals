@@ -1,6 +1,6 @@
 {
     "id": "Minerals",
-    "version": "1.0.0",
+    "version": "1.0.0-SNAPSHOT",
     "author": "Metouto,Esa-Petri,Qwertygiy",
     "displayName": "Mineral Pack",
     "description": "This module adds a wide range of minerals.",

@@ -1,7 +1,7 @@
 
 package org.terasology.minerals.generation;
 
-import org.terasology.math.geom.Vector3i;
+import org.joml.Vector3ic;
 import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.SimplexNoise;
 import org.terasology.world.generation.Border3D;
@@ -102,9 +102,9 @@ public abstract class OreProvider implements FacetProviderPlugin {
         OreFacet facet = new OreFacet(region.getRegion(), border);
         ElevationFacet elevationFacet = region.getRegionFacet(ElevationFacet.class);
         
-        for (Vector3i block : region.getRegion())
-            if(block.y < MAX_HEIGHT[index] && block.y < elevationFacet.getWorld(block.x, block.z)-5) {
-                float noiseLevel = oreNoise.noise(block.x, block.y, block.z);
+        for (Vector3ic block : region.getRegion())
+            if(block.y() < MAX_HEIGHT[index] && block.y() < elevationFacet.getWorld(block.x(), block.z())-5) {
+                float noiseLevel = oreNoise.noise(block.x(), block.y(), block.z());
                 if(noiseLevel <= RARITY[index])
                     facet.setWorld(block, 0);
                 else {

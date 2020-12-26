@@ -1,8 +1,9 @@
 
 package org.terasology.minerals.generation;
 
+import org.joml.Vector3i;
+import org.joml.Vector3ic;
 import org.terasology.math.ChunkMath;
-import org.terasology.math.geom.Vector3i;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
@@ -13,11 +14,11 @@ import org.terasology.world.generator.plugin.RegisterPlugin;
 
 @RegisterPlugin
 public class OreRasterizer implements WorldRasterizerPlugin {
-    
+
     protected Block acanthite, bauxite, bituminousCoal, cassiterite, chalcopyrite, chlorargyrite, chrysocolla, coal, goethite,
             hematite, limonite, magnetite, nativeCopper, nativeElectrum, nativeGold, nativeSilver, pyrargyrite, rutile,
             siderite, stibnite, titanite;
-    
+
     @Override
     public void initialize() {
         acanthite = CoreRegistry.get(BlockManager.class).getBlock("Minerals:AcanthiteOre");
@@ -67,56 +68,47 @@ public class OreRasterizer implements WorldRasterizerPlugin {
         generateChunk(chunk, chunkRegion, stibnite, chunkRegion.getFacet(OreFacet.Stibnite.class));
         generateChunk(chunk, chunkRegion, titanite, chunkRegion.getFacet(OreFacet.Titanite.class));
     }
-    
+
     protected void generateChunk(CoreChunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
-        for(Vector3i position : chunkRegion.getRegion()) {
+        Vector3i tempPos = new Vector3i();
+        for(Vector3ic position : chunkRegion.getRegion()) {
             int veinSize = (int)oreFacet.getWorld(position);
-            
+
             switch(veinSize) {
                 case(1):
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
                 break;
-                
+
                 case(2): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
                 }
                 break;
-                
+
                 case(3): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, 0, -1);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, -1, tempPos), tempPos), ore);
                 }
                 break;
-                
+
                 case(4): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, 0, -1);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, 1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, -1, tempPos), tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, 0, -1, tempPos), tempPos), ore);
                 }
                 break;
-                
+
                 case(5): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, 0, -1);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(0, 1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
-                    position.add(1, -1, 0);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, -1, tempPos), tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, 0, -1, tempPos), tempPos), ore);
+                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(1, -1, -1, tempPos), tempPos), ore);
                 }
                 break;
-                
+
                 default: break;
             }
         }
