@@ -3,10 +3,10 @@ package org.terasology.minerals.generation;
 
 import org.joml.Vector3i;
 import org.joml.Vector3ic;
-import org.terasology.math.ChunkMath;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
+import org.terasology.world.chunks.Chunks;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizerPlugin;
@@ -15,9 +15,27 @@ import org.terasology.world.generator.plugin.RegisterPlugin;
 @RegisterPlugin
 public class OreRasterizer implements WorldRasterizerPlugin {
 
-    protected Block acanthite, bauxite, bituminousCoal, cassiterite, chalcopyrite, chlorargyrite, chrysocolla, coal, goethite,
-            hematite, limonite, magnetite, nativeCopper, nativeElectrum, nativeGold, nativeSilver, pyrargyrite, rutile,
-            siderite, stibnite, titanite;
+    protected Block acanthite;
+    protected Block bauxite;
+    protected Block bituminousCoal;
+    protected Block cassiterite;
+    protected Block chalcopyrite;
+    protected Block chlorargyrite;
+    protected Block chrysocolla;
+    protected Block coal;
+    protected Block goethite;
+    protected Block hematite;
+    protected Block limonite;
+    protected Block magnetite;
+    protected Block nativeCopper;
+    protected Block nativeElectrum;
+    protected Block nativeGold;
+    protected Block nativeSilver;
+    protected Block pyrargyrite;
+    protected Block rutile;
+    protected Block siderite;
+    protected Block stibnite;
+    protected Block titanite;
 
     @Override
     public void initialize() {
@@ -46,7 +64,7 @@ public class OreRasterizer implements WorldRasterizerPlugin {
 
     @Override
     public void generateChunk(CoreChunk chunk, Region chunkRegion) {
-        generateChunk(chunk, chunkRegion, acanthite, chunkRegion.getFacet( OreFacet.Acanthite.class));
+        generateChunk(chunk, chunkRegion, acanthite, chunkRegion.getFacet(OreFacet.Acanthite.class));
         generateChunk(chunk, chunkRegion, bauxite, chunkRegion.getFacet(OreFacet.Bauxite.class));
         generateChunk(chunk, chunkRegion, bituminousCoal, chunkRegion.getFacet(OreFacet.BituminousCoal.class));
         generateChunk(chunk, chunkRegion, cassiterite, chunkRegion.getFacet(OreFacet.Cassiterite.class));
@@ -71,45 +89,38 @@ public class OreRasterizer implements WorldRasterizerPlugin {
 
     protected void generateChunk(CoreChunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
         Vector3i tempPos = new Vector3i();
-        for(Vector3ic position : chunkRegion.getRegion()) {
-            int veinSize = (int)oreFacet.getWorld(position);
+        for (Vector3ic position : chunkRegion.getRegion()) {
+            int veinSize = (int) oreFacet.getWorld(position);
 
-            switch(veinSize) {
-                case(1):
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
-                break;
+            switch (veinSize) {
+                case (1):
+                    chunk.setBlock(Chunks.toRelative(position, tempPos), ore);
+                    break;
+                case (2):
+                    chunk.setBlock(Chunks.toRelative(position, tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    break;
+                case (3):
+                    chunk.setBlock(Chunks.toRelative(position, tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, -1, tempPos), tempPos), ore);
+                    break;
+                case (4):
+                    chunk.setBlock(Chunks.toRelative(position, tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, -1, tempPos), tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, 0, -1, tempPos), tempPos), ore);
+                    break;
 
-                case(2): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
-                }
-                break;
-
-                case(3): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, -1, tempPos), tempPos), ore);
-                }
-                break;
-
-                case(4): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, -1, tempPos), tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, 0, -1, tempPos), tempPos), ore);
-                }
-                break;
-
-                case(5): {
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position, tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, 0, tempPos), tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, -1, -1, tempPos), tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(0, 0, -1, tempPos), tempPos), ore);
-                    chunk.setBlock(ChunkMath.calcRelativeBlockPos(position.add(1, -1, -1, tempPos), tempPos), ore);
-                }
-                break;
-
-                default: break;
+                case (5):
+                    chunk.setBlock(Chunks.toRelative(position, tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, 0, tempPos), tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, -1, -1, tempPos), tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(0, 0, -1, tempPos), tempPos), ore);
+                    chunk.setBlock(Chunks.toRelative(position.add(1, -1, -1, tempPos), tempPos), ore);
+                    break;
+                default:
+                    break;
             }
         }
     }
