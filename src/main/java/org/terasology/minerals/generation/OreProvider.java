@@ -2,12 +2,12 @@
 package org.terasology.minerals.generation;
 
 import org.joml.Vector3ic;
-import org.terasology.utilities.procedural.Noise;
-import org.terasology.utilities.procedural.SimplexNoise;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.FacetProviderPlugin;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.facets.ElevationFacet;
+import org.terasology.engine.utilities.procedural.Noise;
+import org.terasology.engine.utilities.procedural.SimplexNoise;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.FacetProviderPlugin;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.facets.ElevationFacet;
 
 public abstract class OreProvider implements FacetProviderPlugin {
     

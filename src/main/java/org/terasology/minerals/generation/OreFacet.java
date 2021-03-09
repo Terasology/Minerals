@@ -1,10 +1,10 @@
 
 package org.terasology.minerals.generation;
 
-import org.terasology.world.block.BlockRegion;
-import org.terasology.world.block.BlockRegionc;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFieldFacet3D;
+import org.terasology.engine.world.block.BlockRegion;
+import org.terasology.engine.world.block.BlockRegionc;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.facets.base.BaseFieldFacet3D;
 
 public class OreFacet extends BaseFieldFacet3D {
 
