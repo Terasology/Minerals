@@ -6,8 +6,8 @@ import org.joml.Vector3ic;
 import org.terasology.engine.registry.CoreRegistry;
 import org.terasology.engine.world.block.Block;
 import org.terasology.engine.world.block.BlockManager;
+import org.terasology.engine.world.chunks.Chunk;
 import org.terasology.engine.world.chunks.Chunks;
-import org.terasology.engine.world.chunks.CoreChunk;
 import org.terasology.engine.world.generation.Region;
 import org.terasology.engine.world.generation.WorldRasterizerPlugin;
 import org.terasology.engine.world.generator.plugin.RegisterPlugin;
@@ -63,7 +63,7 @@ public class OreRasterizer implements WorldRasterizerPlugin {
     }
 
     @Override
-    public void generateChunk(CoreChunk chunk, Region chunkRegion) {
+    public void generateChunk(Chunk chunk, Region chunkRegion) {
         generateChunk(chunk, chunkRegion, acanthite, chunkRegion.getFacet(OreFacet.Acanthite.class));
         generateChunk(chunk, chunkRegion, bauxite, chunkRegion.getFacet(OreFacet.Bauxite.class));
         generateChunk(chunk, chunkRegion, bituminousCoal, chunkRegion.getFacet(OreFacet.BituminousCoal.class));
@@ -87,7 +87,7 @@ public class OreRasterizer implements WorldRasterizerPlugin {
         generateChunk(chunk, chunkRegion, titanite, chunkRegion.getFacet(OreFacet.Titanite.class));
     }
 
-    protected void generateChunk(CoreChunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
+    protected void generateChunk(Chunk chunk, Region chunkRegion, Block ore, OreFacet oreFacet) {
         Vector3i tempPos = new Vector3i();
         for (Vector3ic position : chunkRegion.getRegion()) {
             int veinSize = (int) oreFacet.getWorld(position);
